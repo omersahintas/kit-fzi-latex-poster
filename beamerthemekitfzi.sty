@@ -1,0 +1,77 @@
+% Local KIT/FZI layout layered over the unmodified Gemini theme.
+\ProvidesPackage{beamerthemekitfzi}
+\RequirePackage{beamerthemegemini}
+\usecolortheme{kit}
+\RequirePackage{kitfzi-colors}
+
+\definecolor{kitfzicanvas}{RGB}{237,240,241}
+\setbeamercolor{background canvas}{bg=kitfzicanvas}
+\setbeamercolor{headline}{fg=white,bg=kitfziprimary}
+\setbeamercolor{headline title}{fg=white}
+\setbeamercolor{headline author}{fg=white}
+\setbeamercolor{headline institute}{fg=white}
+\setbeamercolor{footline}{fg=kitfzibrandgray,bg=white}
+\setbeamercolor{block title}{fg=kitfziprimary,bg=white}
+\setbeamercolor{block separator}{bg=kitfziprimary!35!white}
+\setbeamercolor{block title example}{fg=kitfziprimary,bg=white}
+\setbeamercolor{block body example}{fg=black,bg=white}
+\setbeamercolor{block separator example}{bg=kitfziprimary!35!white}
+\setbeamercolor{block title alerted}{fg=kitfziprimary,bg=kitfzilight}
+\setbeamercolor{block body alerted}{fg=black,bg=kitfzilight}
+\setbeamercolor{block separator alerted}{bg=kitfziprimary!45!white}
+\setbeamercolor{item}{fg=kitfzibrandgray}
+\setbeamertemplate{caption label separator}[period]
+
+% Left-aligned title and two institutional marks, as in the local poster PDF.
+\setbeamertemplate{headline}{%
+  \begin{beamercolorbox}[wd=\paperwidth]{headline}
+    \usebeamerfont{headline}
+    \vskip2.5ex
+    \hspace*{0.025\paperwidth}%
+    \begin{minipage}[c]{0.735\paperwidth}
+      \raggedright
+      {\usebeamerfont{headline title}\usebeamercolor[fg]{headline title}\inserttitle\par}
+      \vspace{0.6ex}
+      {\usebeamerfont{headline author}\usebeamercolor[fg]{headline author}\insertauthor\par}
+      \vspace{0.6ex}
+      {\usebeamerfont{headline institute}\usebeamercolor[fg]{headline institute}\insertinstitute\par}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[c]{0.19\paperwidth}
+      \raggedleft\insertlogoleft\hspace{1.5cm}\insertlogoright
+    \end{minipage}%
+    \hspace*{0.025\paperwidth}
+    \vskip2.5ex
+  \end{beamercolorbox}%
+}
+
+% White content cards with consistent padding on a light-gray canvas.
+\newcommand{\kitfziblockbegin}[3]{%
+  \begin{beamercolorbox}[wd=\linewidth,center,sep=0.7ex]{#1}
+    \usebeamerfont{block title}\insertblocktitle
+  \end{beamercolorbox}\par\nointerlineskip
+  \begin{beamercolorbox}[wd=\linewidth,ht=0.06ex]{#2}\end{beamercolorbox}\par\nointerlineskip
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[wd=\linewidth,vmode]{#3}
+    \vspace{0.8ex}\hspace*{1ex}%
+    \begin{minipage}{\dimexpr\linewidth-2ex\relax}
+    \raggedright\setlength{\parskip}{0.6ex}%
+}
+\newcommand{\kitfziblockend}{\end{minipage}\par\vspace{0.8ex}\end{beamercolorbox}\par\vspace{1.2ex}}
+\setbeamertemplate{block begin}{\kitfziblockbegin{block title}{block separator}{block body}}
+\setbeamertemplate{block end}{\kitfziblockend}
+\setbeamertemplate{block alerted begin}{\kitfziblockbegin{block title alerted}{block separator alerted}{block body alerted}}
+\setbeamertemplate{block alerted end}{\kitfziblockend}
+\setbeamertemplate{block example begin}{\kitfziblockbegin{block title example}{block separator example}{block body example}}
+\setbeamertemplate{block example end}{\kitfziblockend}
+
+\setbeamertemplate{footline}{%
+  \ifdefined\insertfootercontent
+    \begin{beamercolorbox}[wd=\paperwidth,sep=1ex]{footline}
+      \hspace*{0.015\paperwidth}%
+      \begin{minipage}{0.95\paperwidth}
+        \usebeamerfont{footline}\insertfootercontent
+      \end{minipage}
+    \end{beamercolorbox}%
+  \fi
+}

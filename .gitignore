@@ -1,5 +1,7 @@
 # output
-*.pdf
+/poster.pdf
+/.build/
+.DS_Store
 
 # intermediate files
 *.aux

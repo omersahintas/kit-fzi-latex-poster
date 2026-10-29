@@ -1,98 +1,63 @@
-# Gemini [![Build Status](https://github.com/anishathalye/gemini/actions/workflows/ci.yml/badge.svg)](https://github.com/anishathalye/gemini/actions/workflows/ci.yml)
+# KIT & FZI research poster template
 
-Gemini is a modern LaTeX [beamerposter] theme.
+A landscape LaTeX poster template for **Karlsruhe Institute of Technology (KIT)**
+and **FZI Research Center for Information Technology**, built on
+[Gemini](https://github.com/anishathalye/gemini).
 
-<p align="center">
-<a href="https://raw.githubusercontent.com/anishathalye/assets/master/gemini/poster-gemini.pdf">
-<img src="https://raw.githubusercontent.com/anishathalye/assets/master/gemini/poster-gemini-small.png">
-</a>
-</p>
+The template adapts the layout of an existing KIT/FZI research poster with KIT
+colors, institutional logos, three columns, and editable figures and tables.
+The default page size is **120 × 72 cm**. All example plots and result values are
+illustrative; replace them with your own research.
 
-If you're looking for a beamer presentation theme, take a look at [Auriga].
+## Color options
 
-## Dependencies
+The same layout is available in three KIT colors and FZI green. Click a preview
+to view the full-size PNG.
 
-- A TeX installation that includes [LuaTeX]
-    - You also need `latexmk` if you want to use the provided `Makefile`
-- LaTeX package dependencies including beamerposter (these usually come with your TeX installation, but if not, you can get them from [CTAN])
-- [Raleway] and [Lato], which are both available under Open Font License
+| KIT green (default) | KIT blue |
+| --- | --- |
+| [![KIT green poster preview](assets/preview/colors/kit-green.png)](assets/preview/colors/kit-green.png) | [![KIT blue poster preview](assets/preview/colors/kit-blue.png)](assets/preview/colors/kit-blue.png) |
+| **KIT black 70%** | **FZI green** |
+| [![KIT black 70% poster preview](assets/preview/colors/kit-black70.png)](assets/preview/colors/kit-black70.png) | [![FZI green poster preview](assets/preview/colors/fzi-green.png)](assets/preview/colors/fzi-green.png) |
 
-## Usage
+Choose a palette near the top of [`poster.tex`](poster.tex):
 
-1. Copy the files in this repository (or clone the repository)
+```tex
+\providecommand{\kitfzipalette}{kit-green}
+\providecommand{\kitfzicolormodel}{rgb}
+```
 
-1. In `poster.tex`, set up your paper size, column layout, and scale the content as necessary
+| Palette ID | RGB | CMYK (%) |
+| --- | --- | --- |
+| `kit-green` | 0 / 150 / 130 | 100 / 0 / 60 / 0 |
+| `kit-blue` | 70 / 100 / 170 | 80 / 50 / 0 / 0 |
+| `kit-black70` | 64 / 64 / 64 | 0 / 0 / 0 / 70 |
+| `fzi-green` | 0 / 119 / 73 (`#007749`) | Not verified |
 
-1. Make a copy of `beamercolorthemegemini.sty`, update the `\usecolortheme` line in `poster.tex`, and theme the poster to your liking (optional, but highly recommended)
+The KIT values follow the [KIT corporate color specifications](https://kit-cd.km.kit.edu/341.php).
+The default `rgb` model uses the supplied RGB values for screen previews.
+For the KIT palettes, set `\kitfzicolormodel` to `cmyk` to use the supplied print
+values. Official RGB and CMYK specifications are separate color definitions;
+their on-screen appearance can differ.
 
-1. Run `make` to build your poster
+FZI green uses `#007749`. The FZI primary color remains RGB
+even when the KIT color model is set to `cmyk`.
 
-## FAQ
+## Build
 
-See the [FAQ] in the Wiki for answers to frequently asked questions such as how to add an institution logo to the poster.
+Requires LuaLaTeX, latexmk, and the Raleway and Lato fonts (available in TeX Live
+or MacTeX).
 
-## Themes
+```sh
+make                 # Build poster.pdf
+make color-previews  # Refresh the four-color gallery
+```
 
-Gemini includes several color themes, and it's also easy to make your own. Gemini has three built-in themes:
+PNG rendering uses Poppler (`pdftoppm`) or macOS `sips`.
 
-- `gemini`, default
-- `mit` ([Massachusetts Institute of Technology](https://mit.edu))
-- `labsix` ([LabSix](https://www.labsix.org/))
+## License and logos
 
-The community has also contributed a number of themes:
-
-<!-- keep these in sorted order by theme name -->
-
-- `beluga` (based on Beamer's `whale` colortheme)
-- `bristol` ([University of Bristol](https://www.bristol.ac.uk/))
-- `czu` ([Czech University of Life Sciences](https://www.czu.cz/))
-- `dart` ([Dartmouth College](https://dartmouth.edu))
-- `iitgn` ([Indian Institute of Technology Gandhinagar](https://iitgn.ac.in/))
-- `kit` ([Karlsruhe Institute of Technology](https://www.kit.edu/))
-- `rochester` ([University of Rochester](https://www.rochester.edu/))
-- `snu` ([Seoul National University](https://snu.ac.kr))
-- `soton` ([University of Southampton](https://southampton.ac.uk/))
-- `stetson` ([Stetson University](https://stetson.edu))
-- `umich` ([University of Michigan](https://umich.edu/))
-- `warwick` ([University of Warwick](https://warwick.ac.uk/))
-
-If you create a Gemini theme, feel free to send a pull request to add it here!
-
-### MIT theme
-
-<p align="center">
-<a href="https://raw.githubusercontent.com/anishathalye/assets/master/gemini/poster-mit.pdf">
-<img src="https://raw.githubusercontent.com/anishathalye/assets/master/gemini/poster-mit-small.png">
-</a>
-</p>
-
-### LabSix theme
-
-<p align="center">
-<a href="https://raw.githubusercontent.com/anishathalye/assets/master/gemini/poster-labsix.pdf">
-<img src="https://raw.githubusercontent.com/anishathalye/assets/master/gemini/poster-labsix-small.png">
-</a>
-</p>
-
-## Design goals
-
-- **Minimal**: clean and easy to read, so that the emphasis is on the content
-- **Batteries included**: works and looks good out of the box
-- **Easy theming**: easy to create and use a new color theme
-
-## Contributing
-
-Contributions to Gemini such as bug reports, new themes, and new poster components are greatly appreciated! Given the subjective nature of design, you're encouraged to open an issue or pull request early to get feedback before investing a lot of time in implementing a new feature.
-
-## License
-
-Copyright (c) Anish Athalye. Released under the MIT License. See [LICENSE.md][license] for details.
-
-[beamerposter]: https://github.com/deselaers/latex-beamerposter
-[Auriga]: https://github.com/anishathalye/auriga
-[LuaTeX]: http://www.luatex.org/
-[CTAN]: https://ctan.org/
-[Raleway]: https://www.fontsquirrel.com/fonts/raleway
-[Lato]: https://www.fontsquirrel.com/fonts/lato
-[license]: LICENSE.md
-[FAQ]: https://github.com/anishathalye/gemini/wiki/FAQ
+Gemini and the template code are distributed under the
+[MIT License](LICENSE.md). Institutional logos retain their respective rights
+and are separate from the code license. See the
+[logo sources and usage notes](assets/logos/README.md).

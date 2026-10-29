@@ -1,0 +1,42 @@
+% Local brand palettes; upstream Gemini color-theme files remain unchanged.
+\ProvidesPackage{kitfzi-colors}
+\RequirePackage{etoolbox}
+\providecommand{\kitfzipalette}{kit-green}
+\providecommand{\kitfzicolormodel}{rgb}
+
+% KIT specifies separate RGB (screen) and CMYK (print) values:
+% https://kit-cd.km.kit.edu/341.php
+\ifdefstring{\kitfzicolormodel}{rgb}{%
+  \definecolor{kitfzibrandgreen}{RGB}{0,150,130}
+  \definecolor{kitfzibrandblue}{RGB}{70,100,170}
+  \definecolor{kitfzibrandgray}{RGB}{64,64,64}
+}{%
+  \ifdefstring{\kitfzicolormodel}{cmyk}{%
+    \definecolor{kitfzibrandgreen}{cmyk}{1,0,0.6,0}
+    \definecolor{kitfzibrandblue}{cmyk}{0.8,0.5,0,0}
+    \definecolor{kitfzibrandgray}{cmyk}{0,0,0,0.7}
+  }{%
+    \PackageError{kitfzi-colors}{Unknown color model: \kitfzicolormodel}{Use rgb or cmyk.}
+  }
+}
+
+% FZI website primary green, verified 2026-10-29:
+% https://www.fzi.de/wp-content/uploads/elementor/css/post-20.css
+% This is a verified web RGB value, not an official CMYK print specification.
+\definecolor{kitfzifzigreen}{RGB}{0,119,73}
+
+\newcommand{\kitfzi@setpalette}[2]{%
+  \colorlet{kitfziprimary}{#1}
+  \colorlet{kitfzisecondary}{#2}
+  \colorlet{kitfzilight}{#1!12!white}
+}
+\csdef{kitfzi@palette@kit-green}{\kitfzi@setpalette{kitfzibrandgreen}{kitfzibrandblue}}
+\csdef{kitfzi@palette@kit-blue}{\kitfzi@setpalette{kitfzibrandblue}{kitfzibrandgreen}}
+\csdef{kitfzi@palette@kit-black70}{\kitfzi@setpalette{kitfzibrandgray}{kitfzibrandblue}}
+\csdef{kitfzi@palette@fzi-green}{\kitfzi@setpalette{kitfzifzigreen}{kitfzibrandblue}}
+
+\ifcsdef{kitfzi@palette@\kitfzipalette}{%
+  \csuse{kitfzi@palette@\kitfzipalette}
+}{%
+  \PackageError{kitfzi-colors}{Unknown palette: \kitfzipalette}{Use a palette listed in README.md.}
+}

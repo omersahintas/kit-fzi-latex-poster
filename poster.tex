@@ -1,352 +1,192 @@
-% Gemini theme
-% https://github.com/anishathalye/gemini
-
+% KIT & FZI research poster, built on Gemini.
+% The values, plots, and prose below are illustrative template content.
+% Options: kit-green, kit-blue, kit-black70, fzi-green.
+\providecommand{\kitfzipalette}{kit-green}
+% Use rgb for the documented screen colors, or cmyk for KIT print values.
+\providecommand{\kitfzicolormodel}{rgb}
 \documentclass[final]{beamer}
-
-% ====================
-% Packages
-% ====================
-
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage[size=custom,width=118.9,height=84.1,scale=1.0]{beamerposter}
-\usetheme{gemini}
-\usecolortheme{gemini}
+\usepackage[size=custom,width=120,height=72,scale=1.0]{beamerposter}
+\usetheme{kitfzi}
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{tikz}
 \usepackage{pgfplots}
-\pgfplotsset{compat=1.14}
 \usepackage{anyfontsize}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\pgfplotsset{compat=1.18}
+\input{figures/example-plots}
 
-% ====================
-% Lengths
-% ====================
-
-% If you have N columns, choose \sepwidth and \colwidth such that
-% (N+1)*\sepwidth + N*\colwidth = \paperwidth
+% For N columns: (N+1)*sepwidth + N*colwidth = paperwidth.
 \newlength{\sepwidth}
 \newlength{\colwidth}
 \setlength{\sepwidth}{0.025\paperwidth}
 \setlength{\colwidth}{0.3\paperwidth}
-
 \newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
 
-% ====================
-% Title
-% ====================
-
-\title{Some fancy title: followed by some more text}
-
-\author{Alyssa P. Hacker \inst{1} \and Ben Bitdiddle \inst{2} \and Lem E. Tweakit \inst{2}}
-
-\institute[shortinst]{\inst{1} Some Institute \samelineand \inst{2} Another Institute}
-
-% ====================
-% Footer (optional)
-% ====================
-
-\footercontent{
-  \href{https://www.example.com}{https://www.example.com} \hfill
-  ABC Conference 2025, New York --- XYZ-1234 \hfill
-  \href{mailto:alyssa.p.hacker@example.com}{alyssa.p.hacker@example.com}}
-% (can be left out to remove footer)
-
-% ====================
-% Logo (optional)
-% ====================
-
-% use this to include logos on the left and/or right side of the header:
-% \logoright{\includegraphics[height=7cm]{logo1.pdf}}
-% \logoleft{\includegraphics[height=7cm]{logo2.pdf}}
-
-% ====================
-% Body
-% ====================
+\title{Your research title: a clear statement of the main idea}
+\author{First Author\inst{1,2} \and Second Author\inst{1} \and Third Author\inst{2}}
+\institute[shortinst]{\inst{1} Karlsruhe Institute of Technology (KIT)\\
+  \inst{2} FZI Research Center for Information Technology}
+\logoleft{\includegraphics[height=4.4cm]{assets/logos/kit-white.pdf}}
+\logoright{\includegraphics[height=5.4cm]{assets/logos/fzi-white.pdf}}
+\footercontent{Conference / Workshop \textbullet\ City \textbullet\ Year\hfill
+  \href{https://example.com/research}{example.com/research}\hfill
+  \href{mailto:name@institution.example}{name@institution.example}}
 
 \begin{document}
-
 \begin{frame}[t]
+\vspace{1.2ex}
 \begin{columns}[t]
 \separatorcolumn
 
 \begin{column}{\colwidth}
-
-  \begin{block}{A block title}
-
-    Some block contents, followed by a diagram, followed by a dummy paragraph.
-
-    \begin{figure}
-      \centering
-      \begin{tikzpicture}[scale=6]
-        \draw[step=0.25cm,color=gray] (-1,-1) grid (1,1);
-        \draw (1,0) -- (0.2,0.2) -- (0,1) -- (-0.2,0.2) -- (-1,0)
-          -- (-0.2,-0.2) -- (0,-1) -- (0.2,-0.2) -- cycle;
-      \end{tikzpicture}
-      \caption{A figure caption.}
-    \end{figure}
-
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ultricies
-    eget libero ac ullamcorper. Integer et euismod ante. Aenean vestibulum
-    lobortis augue, ut lobortis turpis rhoncus sed. Proin feugiat nibh a
-    lacinia dignissim. Proin scelerisque, risus eget tempor fermentum, ex
-    turpis condimentum urna, quis malesuada sapien arcu eu purus.
-
-  \end{block}
-
-  \begin{block}{A block containing a list}
-
-    Curabitur condimentum sem id semper vulputate. Nam lobortis ultrices
-    iaculis. Maecenas bibendum, sem vel vehicula tempus, nisi tortor eleifend
-    tellus, at molestie mi libero ut turpis. Duis finibus finibus sapien, ut
-    mollis odio malesuada a. Aenean ut ex augue. Quisque vulputate scelerisque
-    eros quis bibendum. Nunc accumsan nisl a tincidunt dapibus. Nulla ut
-    vulputate elit, quis posuere tellus. Aliquam euismod nulla ipsum, eu
-    blandit metus fermentum sed. Proin ultrices sodales nulla eu molestie.
-    Nullam mi odio, blandit nec dui lacinia, accumsan facilisis nunc. Maecenas
-    vel est et magna dapibus cursus id in ante.
-
-    \begin{itemize}
-      \item \textbf{Mauris tempor} risus nulla, sed ornare
-      \item \textbf{Libero tincidunt} a duis congue vitae
-      \item \textbf{Dui ac pretium} morbi justo neque, ullamcorper
-    \end{itemize}
-
-    Cras imperdiet vel elit dignissim cursus. Nulla vehicula, lacus sed lacinia
-    hendrerit, tortor libero euismod orci, sodales cursus felis arcu sit amet
-    metus. Suspendisse sit amet tincidunt nisi. Maecenas id libero rutrum,
-    sodales enim id, varius sem. Maecenas ac felis vel dolor feugiat pharetra.
-    Nullam suscipit libero efficitur, commodo lacus in, blandit mi. Nam at
-    sagittis nisl. Mauris eu enim nibh. In sollicitudin sit amet tortor
-    imperdiet convallis.
-
-    Mauris eget risus a purus feugiat consectetur. Aliquam suscipit nunc
-    nulla, sed feugiat massa volutpat ac. Nullam quis bibendum orci. Cras
-    blandit odio velit, et tempus neque malesuada ut. Fusce pharetra mauris
-    sed magna ultrices, eget aliquet dui pellentesque. Nullam porta eleifend
-    leo eu feugiat. Sed quis libero in magna interdum sagittis ut sed mi.
-
-  \end{block}
-
-  \begin{alertblock}{A highlighted block}
-
-    This block catches your eye, so \textbf{important stuff} should probably go
-    here.
-
-    Curabitur eu libero vehicula, cursus est fringilla, luctus est. Morbi
-    consectetur mauris quam, at finibus elit auctor ac. Aliquam erat volutpat.
-    Aenean at nisl ut ex ullamcorper eleifend et eu augue. Aenean quis velit
-    tristique odio convallis ultrices a ac odio.
-
-    \begin{itemize}
-      \item \textbf{Fusce dapibus tellus} vel tellus semper finibus. In
-        consequat, nibh sed mattis luctus, augue diam fermentum lectus.
-      \item \textbf{In euismod erat metus} non ex. Vestibulum luctus augue in
-        mi condimentum, at sollicitudin lorem viverra.
-      \item \textbf{Suspendisse vulputate} mauris vel placerat consectetur.
-        Mauris semper, purus ac hendrerit molestie, elit mi dignissim odio, in
-        suscipit felis sapien vel ex.
-    \end{itemize}
-
-    Aenean tincidunt risus eros, at gravida lorem sagittis vel. Vestibulum ante
-    ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae.
-
-  \end{alertblock}
-
-\end{column}
-
-\separatorcolumn
-
-\begin{column}{\colwidth}
-
-  \begin{block}{A block containing an enumerated list}
-
-    Vivamus congue volutpat elit non semper. Praesent molestie nec erat ac
-    interdum. In quis suscipit erat. \textbf{Phasellus mauris felis, molestie
-    ac pharetra quis}, tempus nec ante. Donec finibus ante vel purus mollis
-    fermentum. Sed felis mi, pharetra eget nibh a, feugiat eleifend dolor. Nam
-    mollis condimentum purus quis sodales. Nullam eu felis eu nulla eleifend
-    bibendum nec eu lorem. Vivamus felis velit, volutpat ut facilisis ac,
-    commodo in metus.
-
+  \begin{block}{Research questions}
     \begin{enumerate}
-      \item \textbf{Morbi mauris purus}, egestas at vehicula et, convallis
-        accumsan orci. Orci varius natoque penatibus et magnis dis parturient
-        montes, nascetur ridiculus mus.
-      \item \textbf{Cras vehicula blandit urna ut maximus}. Aliquam blandit nec
-        massa ac sollicitudin. Curabitur cursus, metus nec imperdiet bibendum,
-        velit lectus faucibus dolor, quis gravida metus mauris gravida turpis.
-      \item \textbf{Vestibulum et massa diam}. Phasellus fermentum augue non
-        nulla accumsan, non rhoncus lectus condimentum.
+      \item What problem matters, and who benefits from solving it?
+      \item Which limitation of existing methods motivates your work?
+      \item What evidence would demonstrate a meaningful improvement?
     \end{enumerate}
-
+    Introduce the task and the setting in two or three sentences. State the
+    assumptions that define the scope of your research.
   \end{block}
 
-  \begin{block}{Fusce aliquam magna velit}
-
-    Et rutrum ex euismod vel. Pellentesque ultricies, velit in fermentum
-    vestibulum, lectus nisi pretium nibh, sit amet aliquam lectus augue vel
-    velit. Suspendisse rhoncus massa porttitor augue feugiat molestie. Sed
-    molestie ut orci nec malesuada. Sed ultricies feugiat est fringilla
-    posuere.
-
-    \begin{figure}
-      \centering
-      \begin{tikzpicture}
-        \begin{axis}[
-            scale only axis,
-            no markers,
-            domain=0:2*pi,
-            samples=100,
-            axis lines=center,
-            axis line style={-},
-            ticks=none]
-          \addplot[red] {sin(deg(x))};
-          \addplot[blue] {cos(deg(x))};
-        \end{axis}
-      \end{tikzpicture}
-      \caption{Another figure caption.}
-    \end{figure}
-
-    In in mi consequat, tristique felis at, dapibus lacus. Fusce sed eleifend
-    sem. Phasellus viverra eros enim. Ut quis pulvinar turpis. In eu faucibus
-    risus. Morbi convallis elit metus, nec vestibulum justo sollicitudin sit
-    amet. Duis et magna accumsan, rutrum erat ut, pulvinar eros. Nunc ac tellus
-    suscipit, sagittis massa nec, ultricies mi. Praesent eget placerat sem. Sed
-    interdum, ligula ut condimentum facilisis, risus risus congue ex, at ornare
-    eros ipsum vel sapien. Suspendisse tincidunt elit ut magna consequat, at
-    dapibus est fringilla. Aliquam vitae dolor urna. Curabitur pellentesque
-    pretium convallis. Sed et ex vel nisi condimentum finibus. Cras blandit
-    nibh molestie venenatis feugiat. Proin nec justo pulvinar, euismod elit
-    viverra, condimentum sem.
-
+  \begin{block}{Contributions}
+    \begin{enumerate}
+      \item \textbf{Idea.} Describe the main conceptual contribution in one sentence.
+      \item \textbf{Reproducible method.} Explain what others can implement or reuse.
+      \item \textbf{Evidence and limitations.} Summarize what the experiments establish.
+    \end{enumerate}
   \end{block}
 
-  \begin{block}{Nam cursus consequat egestas}
+  \begin{block}{Method}
+    \textbf{1. Input.} Specify the observations, labels, or signals available to the method.
 
-    Nulla eget sem quam. Ut aliquam volutpat nisi vestibulum convallis. Nunc a
-    lectus et eros facilisis hendrerit eu non urna. Interdum et malesuada fames
-    ac ante \textit{ipsum primis} in faucibus. Etiam sit amet velit eget sem
-    euismod tristique. Praesent enim erat, porta vel mattis sed, pharetra sed
-    ipsum. Morbi commodo condimentum massa, \textit{tempus venenatis} massa
-    hendrerit quis. Maecenas sed porta est. Praesent mollis interdum lectus,
-    sit amet sollicitudin risus tincidunt non.
+    \textbf{2. Representation.} Introduce the core transformation and the proposed component.
+    \[
+      \hat y = g_\phi(h), \qquad h = f_\theta(x)
+    \]
+    Here, $x$ denotes an input, $h$ its representation, and $\hat y$ a prediction;
+    $\theta$ and $\phi$ are learned parameters.
 
-    Etiam sit amet tempus lorem, aliquet condimentum velit. Donec et nibh
-    consequat, sagittis ex eget, dictum orci. Etiam quis semper ante. Ut eu
-    mauris purus. Proin nec consectetur ligula. Mauris pretium molestie
-    ullamcorper. Integer nisi neque, aliquet et odio non, sagittis porta justo.
-
-    \begin{itemize}
-      \item \textbf{Sed consequat} id ante vel efficitur. Praesent congue massa
-        sed est scelerisque, elementum mollis augue iaculis.
-        \begin{itemize}
-          \item In sed est finibus, vulputate
-            nunc gravida, pulvinar lorem. In maximus nunc dolor, sed auctor eros
-            porttitor quis.
-          \item Fusce ornare dignissim nisi. Nam sit amet risus vel lacus
-            tempor tincidunt eu a arcu.
-          \item Donec rhoncus vestibulum erat, quis aliquam leo
-            gravida egestas.
-        \end{itemize}
-      \item \textbf{Sed luctus, elit sit amet} dictum maximus, diam dolor
-        faucibus purus, sed lobortis justo erat id turpis.
-      \item \textbf{Pellentesque facilisis dolor in leo} bibendum congue.
-        Maecenas congue finibus justo, vitae eleifend urna facilisis at.
-    \end{itemize}
-
+    \textbf{3. Evaluation.} Compare against appropriate baselines using the same protocol.
   \end{block}
 
-\end{column}
+  \begin{block}{Ablation study}
+    \begin{center}\ablationplot\end{center}
+    {\small Illustrative values: replace the scores with your own measurements.}
+  \end{block}
 
-\separatorcolumn
+  \begin{exampleblock}{Experimental setup}
+    \textbf{Data.} State the dataset, split sizes, preprocessing, and access conditions.
 
-\begin{column}{\colwidth}
+    \textbf{Protocol.} Define the metrics, baseline settings, and evaluation procedure.
 
-  \begin{exampleblock}{A highlighted block containing some math}
-
-    A different kind of highlighted block.
-
-    $$
-    \int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}
-    $$
-
-    Interdum et malesuada fames $\{1, 4, 9, \ldots\}$ ac ante ipsum primis in
-    faucibus. Cras eleifend dolor eu nulla suscipit suscipit. Sed lobortis non
-    felis id vulputate.
-
-    \heading{A heading inside a block}
-
-    Praesent consectetur mi $x^2 + y^2$ metus, nec vestibulum justo viverra
-    nec. Proin eget nulla pretium, egestas magna aliquam, mollis neque. Vivamus
-    dictum $\mathbf{u}^\intercal\mathbf{v}$ sagittis odio, vel porta erat
-    congue sed. Maecenas ut dolor quis arcu auctor porttitor.
-
-    \heading{Another heading inside a block}
-
-    Sed augue erat, scelerisque a purus ultricies, placerat porttitor neque.
-    Donec $P(y \mid x)$ fermentum consectetur $\nabla_x P(y \mid x)$ sapien
-    sagittis egestas. Duis eget leo euismod nunc viverra imperdiet nec id
-    justo.
-
+    \textbf{Reproducibility.} Provide code, configurations, random seeds, and hardware details.
   \end{exampleblock}
 
-  \begin{block}{Nullam vel erat at velit convallis laoreet}
+  \begin{block}{References}
+    {\small Add citations where they support a specific statement; this is a
+    formatting example \cite{shannon1948communication}.
+    \bibliographystyle{plain}\bibliography{poster}}
+  \end{block}
+\end{column}
 
-    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
-    inceptos himenaeos. Phasellus libero enim, gravida sed erat sit amet,
-    scelerisque congue diam. Fusce dapibus dui ut augue pulvinar iaculis.
+\separatorcolumn
+\begin{column}{\colwidth}
+  \begin{block}{Overview}
+    Use a compact diagram to show the complete method and highlight the part
+    introduced by your work.
+    \begin{center}\methoddiagram\end{center}
+    Read from left to right: input, representation, and prediction. The lower
+    component marks the proposed idea; the dashed path identifies the baseline comparison.
+  \end{block}
 
-    \begin{table}
-      \centering
-      \begin{tabular}{l r r c}
+  \begin{block}{Learning curves}
+    \begin{center}
+      \begin{minipage}{0.48\linewidth}\learningplot{0.2}{0.96}{(a) Training}\end{minipage}\hfill
+      \begin{minipage}{0.48\linewidth}\learningplot{0.27}{0.90}{(b) Validation}\end{minipage}
+    \end{center}
+    {\small Illustrative curves. Solid lines denote the proposed method; dashed lines denote the baseline.}
+
+    Explain how performance changes during training. For real experiments,
+    report variation across runs and describe how model selection was performed.
+  \end{block}
+
+  \begin{block}{Sensitivity analysis}
+    \begin{center}\sensitivityplot\end{center}
+    {\small Illustrative response to parameter $\tau$; the dashed gray line is a reference.}
+
+    Identify the range where the method behaves reliably. Explain why the
+    parameter matters and where the observed behavior breaks down.
+  \end{block}
+
+\end{column}
+
+\separatorcolumn
+\begin{column}{\colwidth}
+  \begin{exampleblock}{Quantitative results}
+    \begin{center}
+      \renewcommand{\arraystretch}{1.25}
+      \begin{tabular}{lrrr}
         \toprule
-        \textbf{First column} & \textbf{Second column} & \textbf{Third column} & \textbf{Fourth} \\
+        Method & Score $\uparrow$ & Error $\downarrow$ & Time (ms) $\downarrow$ \\
         \midrule
-        Foo & 13.37 & 384,394 & $\alpha$ \\
-        Bar & 2.17 & 1,392 & $\beta$ \\
-        Baz & 3.14 & 83,742 & $\delta$ \\
-        Qux & 7.59 & 974 & $\gamma$ \\
+        Baseline & 72.4 & 0.34 & 12.8 \\
+        + Component A & 76.1 & 0.29 & 13.1 \\
+        + Component B & 78.5 & 0.26 & 13.4 \\
+        \textbf{Full method} & \textbf{81.3} & \textbf{0.22} & 13.6 \\
         \bottomrule
       \end{tabular}
-      \caption{A table caption.}
-    \end{table}
+    \end{center}
+    {\small All values are illustrative. Arrows indicate the preferred metric direction.}
 
-    Donec quis posuere ligula. Nunc feugiat elit a mi malesuada consequat. Sed
-    imperdiet augue ac nibh aliquet tristique. Aenean eu tortor vulputate,
-    eleifend lorem in, dictum urna. Proin auctor ante in augue tincidunt
-    tempor. Proin pellentesque vulputate odio, ac gravida nulla posuere
-    efficitur. Aenean at velit vel dolor blandit molestie. Mauris laoreet
-    commodo quam, non luctus nibh ullamcorper in. Class aptent taciti sociosqu
-    ad litora torquent per conubia nostra, per inceptos himenaeos.
+    State the main comparison and its practical significance. Discuss the tradeoff
+    between predictive quality and computational cost.
+  \end{exampleblock}
 
-    \begin{enumerate}
-      \item \textbf{Praesent vel enim} eget urna auctor accumsan. Ut volutpat, erat sed vulputate porta, metus dolor consectetur eros, eget vestibulum purus nulla hendrerit ex.
-      \item \textbf{Lorem ipsum dolor sit amet}, consectetur adipiscing elit. Proin lobortis euismod eros at rhoncus.
-      \item \textbf{Sed eget odio varius}, posuere tellus malesuada, commodo tellus. Sed sollicitudin mauris nibh, quis mattis magna fermentum et.
-      \item \textbf{Suspendisse ut tellus} ullamcorper, faucibus mauris vitae, blandit est. Aenean gravida sodales pretium. Nullam sed dolor in arcu maximus blandit vel non eros.
-      \item \textbf{Fusce quis elit} vel lectus porta tempus.
-    \end{enumerate}
+  \begin{block}{Qualitative results}
+    \begin{center}
+      \begin{minipage}{0.31\linewidth}\trajectorypanel{0.05}{kitfzisecondary}{(a) Baseline}\end{minipage}\hfill
+      \begin{minipage}{0.31\linewidth}\trajectorypanel{0.65}{kitfziprimary}{(b) Setting A}\end{minipage}\hfill
+      \begin{minipage}{0.31\linewidth}\trajectorypanel{1.15}{kitfziprimary}{(c) Setting B}\end{minipage}
+    \end{center}
+    {\small Schematic trajectory examples for layout illustration; these are not experimental results.}
 
-    Nulla varius finibus volutpat. Mauris molestie lorem tincidunt, iaculis
-    libero at, gravida ante. Phasellus at felis eu neque suscipit suscipit.
-    Integer ullamcorper, dui nec pretium ornare, urna dolor consequat libero,
-    in feugiat elit lorem euismod lacus. Pellentesque sit amet dolor mollis,
-    auctor urna non, tempus sem.
-
+    Use representative cases to explain what changes. Include a failure case
+    when it helps readers understand the method's limitations.
   \end{block}
 
-  \begin{block}{References}
-
-    \nocite{*}
-    \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
-
+  \begin{block}{Limitations and next steps}
+    \begin{itemize}
+      \item Which assumptions constrain the interpretation of the results?
+      \item Does the method generalize to different data, settings, or populations?
+      \item What next experiment would test the most important open question?
+    \end{itemize}
   \end{block}
 
+  \begin{alertblock}{Take-home message}
+    \textbf{Write the one sentence you want readers to remember.}
+
+    Connect the main finding to its significance, and keep the conclusion within
+    the scope supported by your evidence.
+  \end{alertblock}
+
+  \begin{block}{Code and data}
+    Help readers reproduce the work: link the code, data, and experiment
+    configuration, and state their availability or access conditions.
+
+    \textbf{Project page:} \href{https://example.com/research}{example.com/research}
+  \end{block}
+
+  \begin{block}{Acknowledgments}
+    Replace this text with the appropriate collaborators, funding acknowledgments,
+    and project identifiers. Remove the section if it is not needed.
+  \end{block}
 \end{column}
 
 \separatorcolumn
 \end{columns}
 \end{frame}
-
 \end{document}
