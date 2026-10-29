@@ -43,6 +43,12 @@ their on-screen appearance can differ.
 FZI green uses `#007749`. The FZI primary color remains RGB
 even when the KIT color model is set to `cmyk`.
 
+## Real-world example
+
+See the [poster](https://omersahintas.com/data/words-in-motion_poster.pdf) of the paper
+[*Words in Motion*](https://omersahintas.com/papers/words-in-motion/) for a finished
+example created in LaTeX/TikZ and polished in Inkscape.
+
 ## Build
 
 Requires LuaLaTeX, latexmk, and the Raleway and Lato fonts (available in TeX Live
